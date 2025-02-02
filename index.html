@@ -1,46 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js" defer></script>
-    <style>
-        /* Add your existing styles here */
 
-        /* Additional style for the note */
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #FFDEE9, #B5FFFC);
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .header_text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FF4B4B;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        
+        .gif_container img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #FF4B4B;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        #yesButton {
+            background-color: #4CAF50;
+        }
+        
+        #noButton {
+            position: relative;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            margin: 1rem 0;
+            border-radius: 15px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .story {
+            font-size: 1rem;
+            margin: 1rem 0;
+            color: #555;
+            line-height: 1.5;
+        }
+        
         .made-with-love {
             position: fixed;
-            bottom: 10px; /* Adjust this value to move it closer to the bottom */
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
-            color: #777;
+            color: #FF4B4B;
+            font-size: 1rem;
         }
-
+        
         .github-link {
-            color: #3498db;
+            color: #FF4B4B;
             text-decoration: none;
             font-weight: bold;
         }
+        
+        @media (max-width: 600px) {
+            .header_text {
+                font-size: 2rem;
+            }
+            .btn {
+                width: 200px;
+                margin: 0.5rem 0;
+            }
+            .story {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <div>
-            <h1 class="header_text">Will you be my valentine? hehe</h1>
-        </div>
+        <h1 class="header_text">Will You Be My Valentine? ❤️</h1>
         <div class="gif_container">
-            <img src="https://64.media.tumblr.com/44437aaa3af65ef5b5dc25b2cf1e81d1/6acc7d78ea83e207-45/s400x600/5b30035952803850ed3136fbe760ceff97ee8d19.gif" alt="Cute animated illustration">
+            <img src="https://media.tenor.com/K_E6ORTmXMoAAAAM/milk-and-mocha-love.gif" alt="Romantic GIF">
         </div>
         <div class="buttons">
-            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-            <button class="btn" id="noButton" onmouseover="moveButton()">No</button>
+            <button class="btn" id="yesButton">Yes 💕</button>
+            <button class="btn" id="noButton">No 🙈</button>
         </div>
-
-        <!-- Positioned closer to the bottom with GitHub link -->
-        <p class="made-with-love">
-            Made with love and a sprinkle of creativity by Gunja 💖✨. 
-            <a href="https://github.com/gunjaa122006/trial/" class="github-link" target="_blank">⭐Star the repo on GitHub</a>.
+        <p class="story">
+            Once upon a time, there was someone who saw you and thought, <br> "Wow, the universe really outdid itself with this one." 💫<br> And now here I am, hoping the universe helps me again by making you say yes! 😄
         </p>
     </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>You said YES! 🥰</h2>
+            <p>
+                Congratulations, you are officially this guide's girlfriend! 🎉❤️<br> Remember, you’re a cutie for a reason! 😘<br>
+                <a href="https://mail.google.com/mail/?extsrc=mailto&url=mailto:hitanshpparikh@gmail.com?subject=I%20said%20Yes!&body=Hey%20Hitansh,%20I%20said%20Yes%20to%20being%20your%20Valentine!%20💖" target="_blank">Click here to send me an email</a>.
+            </p>
+            <p style="margin-top: 20px; text-align: left;">
+                Let me recount a simpler yet heartfelt tale of how this all began. 💖<br> From the moment we started talking, your kindness and charm shone brighter than any star in the sky. Your humor, so effortlessly delightful, has brought countless
+                smiles to my face. 🌟<br> You’re not just beautiful on the outside—your caring nature and motivating spirit make you the most incredible person I’ve ever known. ❤️<br> Each moment with you feels like a gift, and I can’t help but admire
+                everything about you: your cuteness, your madness, your determination, and your ability to light up any room. ✨<br> If I had to choose someone to stand by my side, it would be you—for you are truly one of a kind.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-no" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Oh no, you said No! 🙈</h2>
+            <p>Please let me know why not me:</p>
+            <textarea placeholder="Type here..." style="width: 90%; height: 100px; margin-top: 10px;"></textarea>
+            <p style="margin-top: 20px; text-align: left;">
+                But hey, don’t worry—this was just a prank! 😂<br> I would never want to risk our precious friendship over something silly like this. You mean the world to me, and our bond is way more important than anything else. Friends forever, right?
+                😄❤️
+            </p>
+        </div>
+    </div>
+
+    <p class="made-with-love">
+        Made with endless love and courage by Hitansh Parikh 💖✨.
+        <a href="https://github.com/hitanshparikh/trial/" class="github-link" target="_blank"> if this made you smile!
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const modal = document.getElementById('modal');
+        const modalNo = document.getElementById('modal-no');
+        const closeModal = document.getElementsByClassName('close');
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        noButton.addEventListener('mouseover', moveButton);
+        noButton.addEventListener('click', () => {
+            modalNo.style.display = "block";
+        });
+
+        yesButton.addEventListener('click', () => {
+            // Fireworks Effect
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 100,
+                    angle: 60,
+                    spread: 55,
+                    origin: {
+                        x: 0
+                    },
+                });
+                confetti({
+                    particleCount: 100,
+                    angle: 120,
+                    spread: 55,
+                    origin: {
+                        x: 1
+                    },
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+
+            // Display Modal
+            modal.style.display = "block";
+        });
+
+        Array.from(closeModal).forEach(close => {
+            close.onclick = function() {
+                modal.style.display = "none";
+                modalNo.style.display = "none";
+            };
+        });
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modalNo) {
+                modalNo.style.display = "none";
+            }
+        };
+    </script>
 </body>
+
 </html>
